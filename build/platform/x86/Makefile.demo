@@ -1,0 +1,35 @@
+-include .config
+
+
+CC := gcc
+LD := ld
+CFLAGS=-Wall -O3 -Iinclude
+
+DEFCONFIG_PATH = ./build/configs
+
+
+target = web
+dir-y = src
+
+
+%.o : %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< 
+	@echo "$^ to $@"
+
+
+all : $(target)
+
+
+.PHONY: $(demo_dir-y)
+
+
+$(target):
+	$(CC) $(CFLAGS) -L./lib -o $@ $(dir-y)/main.c -lweb_server -lpthread
+
+
+clean:
+	rm -vf $(demo_dir-y)/*.o
+	rm -vf $(demo_target_client)
+	rm -vf $(demo_target_server)
+
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="zn-CH">
+
+  <head>
+    <meta charset="utf-8"/>
+    <title>web</title>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/player.js"></script>
+    <link href="styles/style.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <div id="top-view">
+      <ul class="main-menu">
+        <li class="menu-item" id="main-menu-item-video" onclick="startWebSocket()">视频</li>
+        <li class="menu-item" id="main-menu-item-config" onclick="clickMainMenuConfig(this)">配置</li>
+        <li class="menu-item" id="main-menu-item-info" onclick="clickMainMenuInfo(this)">信息</li>
+      </ul>
+    </div>
+
+    <div id="bottom-view">
+      <div id="left-view">
+        <ul class="sub-menu" id="sub-menu-video" style="display: none;">
+          <li class="menu-item" id="sub-menu-item-point">点测温</li>
+          <li class="menu-item" id="sub-menu-item-line">线测温</li>
+          <li class="menu-item" id="sub-menu-item-rect">区域测温</li>
+          <li class="menu-item" id="sub-menu-item-osd">OSD</li>
+        </ul>
+
+        <ul class="sub-menu" id="sub-menu-config" style="display: none;">
+          <li class="menu-item" id="sub-menu-item-param" onclick="clickSubMenuParam(this)">测温参数</li>
+          <li class="menu-item" id="sub-menu-item-sys" onclick="clickSubMenuSys(this)">系统设置</li>
+          <li class="menu-item" id="sub-menu-item-net" onclick="clickSubMenuNet(this)">网络设置</li>
+          <li class="menu-item" id="sub-menu-item-modbus" onclick="clickSubMenuModbus(this)">MODBUS</li>
+        </ul>
+
+        <ul class="sub-menu" id="sub-menu-info" style="display: none;">
+          <li class="menu-item" id="sub-menu-item-info" onclick="clickSubMenuInfo(this)">设备信息</li>
+        </ul>
+      </div>
+
+
+      <div id="center-view">
+        <table class="menu-content" id="menu-content-param" style="display: none;">
+          <tr>  <td><label>辐射率</label></td>    <td><input type="number"/><label>%</label></td> </tr>
+          <tr>  <td><label>距离</label></td>      <td><input type="number"/><label>m</label></td> </tr>
+          <tr>  <td><label>相对湿度</label></td>  <td><input type="number"/><label>%</label></td> </tr>
+          <tr>  <td><label>环境温度</label></td>  <td><input type="number"/><label></label></td> </tr>
+          <tr>  <td><label>反射温度</label></td>  <td><input type="number"/><label></label></td> </tr>
+          <tr>  <td><label>窗口透过率</label></td>  <td><input type="number"/><label>%</label></td> </tr>
+          <tr>  <td><label>参考温度</label></td>  <td><input type="number"/><label></label></td> </tr>
+          <tr>  <td><label>温度单位</label></td>  <td><select><option>℃</option><option>℉</option><option>K</option></select></td> </tr>
+        </table>
+
+        <table class="menu-content" id="menu-content-sys" style="display: none;">
+          <tr>  <td><label>语言</label></td>  <td><select><option>简体中文</option><option>English</option></select></td></tr>
+          <tr>  <td><label>时间日期</label></td>  <td><input type="datetime-local"/></td> </tr>
+          <tr>  <td><button>恢复出厂设置</button></td></tr>
+        </table>
+
+        <div class="menu-content" id="menu-content-net" style="display: none;">
+          <table>
+            <tr>  <td><label>IP</label></td>  <td><input/></td> </tr>
+            <tr>  <td><label>掩码</label></td>  <td><input/></td> </tr>
+            <tr>  <td><label>网关</label></td>  <td><input/></td> </tr>
+          </table>
+          <div class="confirm">
+            <button>确定</button> <button>取消</button>
+          </div>
+        </div>
+
+        <table class="menu-content" id="menu-content-modbus" style="display: none;">
+          <tr>  <td><label>站地址</label></td>  <td><label>0x</label><input/></td>  </tr>
+          <tr>  <td><label>单寄存器地址</label></td>  <td><label>0x</label><input/></td> <td><button>测试</button></td> </tr>
+          <tr>  <td><label>多寄存器起始地址</label></td>  <td><label>0x</label><input/></td>  <td><button>测试</button></td></tr>
+        </table>
+
+        <table class="menu-content" id="menu-content-info" style="display: none;">
+          <tr>  <td><label>型号</label></td>      <td><label></label></td> </tr>
+          <tr>  <td><label>序列号</label></td>    <td><label></label></td> </tr>
+          <tr>  <td><label>固件版本</label></td>  <td><label></label></td> </tr>
+          <tr>  <td><label>FPGA版本</label></td>  <td><label></label></td> </tr>
+        </table>
+
+        <canvas id="canvas" width="640" height="480"></canvas>
+      </div>
+    </div>
+  </body>
+
+</html>
